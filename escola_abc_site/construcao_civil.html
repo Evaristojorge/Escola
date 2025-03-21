@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construcao Civil</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background: #0073e6; color: white; text-align: center; padding: 20px; font-size: 24px; }
+        .container { padding: 20px; text-align: center; }
+        form, table { background: white; padding: 20px; margin: auto; width: 80%; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        label, input { display: block; width: 100%; margin-bottom: 10px; padding: 10px; }
+        button { background: #0073e6; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #005bb5; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 10px; text-align: center; }
+        footer { background: #0073e6; color: white; text-align: center; padding: 10px; width: 100%; position: absolute; bottom: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Construcao Civil</h1>
+    </header>
+    <div class="container">
+        <h2>Registrar Notas</h2>
+        <form id="notasForm">
+            <label for="nome">Nome do Aluno:</label>
+            <input type="text" id="nome" required>
+
+            <label for="classe">Classe:</label>
+            <input type="text" id="classe" required>
+
+            <label for="turma">Turma:</label>
+            <input type="text" id="turma" required>
+
+            <label for="nota1">Nota 1º Trimestre:</label>
+            <input type="number" id="nota1" required min="0" max="20">
+
+            <label for="nota2">Nota 2º Trimestre:</label>
+            <input type="number" id="nota2" required min="0" max="20">
+
+            <label for="nota3">Nota 3º Trimestre:</label>
+            <input type="number" id="nota3" required min="0" max="20">
+
+            <button type="submit">Registrar</button>
+        </form>
+
+        <h2>Notas Registradas</h2>
+        <table id="tabelaNotas">
+            <tr>
+                <th>Nome</th>
+                <th>Classe</th>
+                <th>Turma</th>
+                <th>1º Tri</th>
+                <th>2º Tri</th>
+                <th>3º Tri</th>
+                <th>Média Final</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        document.getElementById("notasForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let nome = document.getElementById("nome").value;
+            let classe = document.getElementById("classe").value;
+            let turma = document.getElementById("turma").value;
+            let nota1 = parseFloat(document.getElementById("nota1").value);
+            let nota2 = parseFloat(document.getElementById("nota2").value);
+            let nota3 = parseFloat(document.getElementById("nota3").value);
+
+            let media = (nota1 + nota2 + nota3) / 3;
+            let status = media >= 9 ? "Aprovado" : "Reprovado";
+
+            let tabela = document.getElementById("tabelaNotas");
+            let novaLinha = tabela.insertRow();
+
+            let celulas = [];
+            for (let i = 0; i < 8; i++) {
+                celulas[i] = novaLinha.insertCell(i);
+            }
+
+            celulas[0].textContent = nome;
+            celulas[1].textContent = classe;
+            celulas[2].textContent = turma;
+            celulas[3].textContent = nota1.toFixed(1);
+            celulas[4].textContent = nota2.toFixed(1);
+            celulas[5].textContent = nota3.toFixed(1);
+            celulas[6].textContent = media.toFixed(1);
+            celulas[7].textContent = status;
+
+            document.getElementById("notasForm").reset();
+        });
+    </script>
+</body>
+</html>

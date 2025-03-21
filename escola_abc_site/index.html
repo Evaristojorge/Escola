@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Médio Politécnico Da Lunda-sul</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background: #0073e6; color: white; text-align: center; padding: 20px; font-size: 24px; }
+        nav { background: #005bb5; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-size: 18px; }
+        .container { padding: 20px; text-align: center; }
+        .search-box { margin: 20px; text-align: center; }
+        .search-box input { padding: 10px; width: 60%; border-radius: 5px; border: 1px solid #ccc; }
+        footer { background: #0073e6; color: white; text-align: center; padding: 10px; width: 100%; position: absolute; bottom: 0; }
+    </style>
+    <script>
+        function searchContent() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let links = document.querySelectorAll('nav a');
+            links.forEach(link => {
+                if (link.textContent.toLowerCase().includes(input)) {
+                    link.style.display = 'inline';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Instituto Médio Politécnico Da Lunda-sul</h1>
+    </header>
+    <nav>
+        <a href="cursos.html">Cursos</a>
+        <a href="qualidade.html">Qualidade</a>
+        <a href="index2.html">Notas</a>
+        <a href="registro1.html">Registro</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+    <div class="search-box">
+        <input type="text" id="search" onkeyup="searchContent()" placeholder="Pesquisar...">
+    </div>
+    <div class="container">
+        <h2>Bem-vindo à Instituto Médio Politécnico Da Lunda-sul</h2>
+        <p>Explore as informações navegando pelo menu acima.</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Escola ABC - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

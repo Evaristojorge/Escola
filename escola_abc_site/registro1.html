@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Alunos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background: #0073e6; color: white; text-align: center; padding: 20px; font-size: 24px; }
+        nav { background: #005bb5; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-size: 18px; }
+        .container { padding: 20px; text-align: center; }
+        form { background: white; padding: 20px; margin: auto; width: 50%; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: left; }
+        label, select, input { display: block; width: 100%; margin-bottom: 10px; padding: 10px; }
+        button { background: #0073e6; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #005bb5; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Registro de Alunos</h1>
+    </header>
+    <nav>
+        <a href="index.html">Início</a>
+    </nav>
+    <div class="container">
+        <h2>Registrar Novo Aluno</h2>
+        <form id="registroForm">
+            <label for="nome">Nome do Aluno:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="curso">Curso:</label>
+            <select id="curso" name="curso">
+                <option value="eletrecidade">Eletricidade</option>
+                <option value="manutencao_industrial">Manutenção Industrial</option>
+                <option value="construcao_civil">Construção Civil</option>
+                <option value="informatica">Informática</option>
+                <option value="contabilidade_geral">Contabilidade Geral</option>
+                <option value="autarquia">Autarquia</option>
+            </select>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="entrando">Entrando</option>
+                <option value="saindo">Saindo</option>
+            </select>
+
+            <button type="submit">Registrar</button>
+        </form>
+        <h2>Registros</h2>
+        <table id="tabelaRegistros" border="1" width="100%">
+            <tr>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        document.getElementById("registroForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let nome = document.getElementById("nome").value;
+            let curso = document.getElementById("curso").value;
+            let status = document.getElementById("status").value;
+            
+            let tabela = document.getElementById("tabelaRegistros");
+            let novaLinha = tabela.insertRow();
+            
+            let celulaNome = novaLinha.insertCell(0);
+            let celulaCurso = novaLinha.insertCell(1);
+            let celulaStatus = novaLinha.insertCell(2);
+            
+            celulaNome.textContent = nome;
+            celulaCurso.textContent = curso.charAt(0).toUpperCase() + curso.slice(1).replace("_", " ");
+            celulaStatus.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+
+            document.getElementById("registroForm").reset();
+        });
+    </script>
+    <footer>
+    </footer>
+</body>
+</html>
